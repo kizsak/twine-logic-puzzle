@@ -1,7 +1,13 @@
 const correctAnswers = [
+    // Row order: Twine Features, Example Games, Game Authors
+    // Column order: Narrative Structures, Twine Features, Example Games
     [true, false, false, false, false],  // Branching Narratives
     [false, false, false, false, true],  // Variable Tracking
-    [false, false, true, false, false]   // Looping Passages
+    [false, false, true, false, false],  // Looping Passages
+    [false, true, false, false, false],  // Example Game 1
+    [false, false, false, true, false],  // Example Game 2
+    [true, false, false, false, false],  // Author 1
+    [false, false, false, true, false]   // Author 2
 ];
 
 function checkResults() {
