@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logic Grid Puzzle</title>
+    <title>Interactive Fiction Logic Grid Puzzle</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Logic Grid Puzzle</h1>
-        
-        <div class="grid-section">
-            <h2>Complete the Grid</h2>
-            <div class="grid">
-                <table id="grid-table"></table>
-            </div>
+        <h1>Interactive Fiction Development Puzzle</h1>
+        <p><strong>Clues:</strong></p>
+        <ul>
+            <li>Immersion prioritizes CSS Styling and is linked to Fantasy.</li>
+            <li>Replayability thrives on Multiple Endings in Mystery stories.</li>
+            <li>Accessibility aligns with Conditional Paths in Historical stories.</li>
+            <li>Efficiency focuses on HTML Passages and avoids Puzzle Design.</li>
+            <li>Narrative Depth benefits from Story Branching in Sci-Fi.</li>
+        </ul>
+
+        <div class="grid">
+            <table id="logic-grid">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Narrative Depth</th>
+                        <th>Replayability</th>
+                        <th>Immersion</th>
+                        <th>Accessibility</th>
+                        <th>Efficiency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Grid will populate dynamically -->
+                </tbody>
+            </table>
         </div>
 
         <button onclick="submitGrid()">Submit</button>
