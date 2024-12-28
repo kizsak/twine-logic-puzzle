@@ -68,7 +68,7 @@ th, td {
     border: 1px solid #ddd;
     text-align: center;
     height: 60px;
-    width: 150px;
+    width: 120px;
     position: relative;
     transition: background-color 0.3s ease, transform 0.2s ease-in-out;
 }
