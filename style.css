@@ -1,39 +1,51 @@
-/* styles.css */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 20px;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  text-align: center;
 }
 
-form {
-    display: inline-block;
-    text-align: left;
+h1 {
+  margin-bottom: 10px;
 }
 
-.puzzle-item {
-    margin-bottom: 15px;
+p {
+  margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
 }
 
-select {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 5px;
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
 
 #result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
+  margin-top: 20px;
+  font-size: 18px;
 }
