@@ -2,16 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Logic Grid Puzzle</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Fiction Logic Grid Puzzle</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Interactive Fiction Logic Grid Puzzle</h1>
-    <div id="puzzle-container">
-        <!-- Puzzle grid will be generated here -->
+    <div class="container">
+        <h1>Interactive Fiction Logic Grid Puzzle</h1>
+        
+        <p><strong>Clues:</strong></p>
+        <ul>
+            <li>The game using Variable Tracking does not follow a Branching Path or Open Map structure.</li>
+            <li>John Ayliff’s game uses CSS Styling for a Hub-and-Spoke structure.</li>
+            <li><em>Detectiveland</em> uses Conditional Paths but isn’t built with Loop-and-Grow or Open Map progression.</li>
+            <li><em>Their Angelical Understanding</em> uses Story Branching for a Loop-and-Grow narrative.</li>
+            <li>Robin Johnson’s game doesn’t use Variable Tracking or Timer-based Events.</li>
+            <li>The Open Map narrative doesn’t use Conditional Paths.</li>
+            <li>Della Watson’s game features Time-Delayed Progression but avoids Story Branching.</li>
+            <li><em>Seedship</em> follows Hub-and-Spoke and uses CSS Styling.</li>
+            <li><em>Bogeyman</em> is authored by Phoebe Barton and features Timer-based Events.</li>
+            <li>The Time-Delayed narrative does not use CSS Styling.</li>
+        </ul>
+
+        <div class="grid">
+            <table id="logic-grid">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Branching Path</th>
+                        <th>Hub-and-Spoke</th>
+                        <th>Loop-and-Grow</th>
+                        <th>Time-Delayed Progression</th>
+                        <th>Open Map</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- JavaScript will dynamically create grid rows -->
+                </tbody>
+            </table>
+        </div>
+
+        <button onclick="submitGrid()">Submit</button>
+        <div id="result"></div>
     </div>
-    <button id="submit-button">Submit Answers</button>
-    <div id="result"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
