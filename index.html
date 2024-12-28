@@ -3,59 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Fiction Logic Grid Puzzle</title>
+    <title>Interactive Logic Matrix Puzzle</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Interactive Fiction Logic Puzzle</h1>
-
-        <p><strong>Clues:</strong></p>
-        <ul id="clue-list">
-            <!-- Clues will be dynamically inserted here -->
-        </ul>
-
-        <div class="grid-container">
-            <table class="logic-grid">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Branching Path</th>
-                        <th>Hub-and-Spoke</th>
-                        <th>Loop-and-Grow</th>
-                        <th>Time-Delayed Progression</th>
-                        <th>Open Map</th>
-                    </tr>
-                </thead>
-                <tbody id="grid-body">
-                    <!-- Grid rows will be dynamically populated -->
-                </tbody>
-            </table>
-        </div>
-
-        <button onclick="submitGrid()">Submit</button>
-        <button onclick="resetGrid()">Reset</button>
-        <div id="result"></div>
-
-        <div class="grid-container" id="solution-section" style="display:none;">
-            <h2>Correct Grid</h2>
-            <table class="logic-grid">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Branching Path</th>
-                        <th>Hub-and-Spoke</th>
-                        <th>Loop-and-Grow</th>
-                        <th>Time-Delayed Progression</th>
-                        <th>Open Map</th>
-                    </tr>
-                </thead>
-                <tbody id="solution-grid-body">
-                    <!-- Solution grid dynamically populated -->
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <h1>Interactive Fiction Logic Matrix</h1>
+    <table id="logicMatrix">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Branching Path</th>
+                <th>Hub-and-Spoke</th>
+                <th>Loop-and-Grow</th>
+                <th>Time-Delayed Progression</th>
+                <th>Open Map</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Branching Narratives</td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>Variable Tracking</td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>Looping Passages</td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button class="submit-btn" onclick="checkResults()">Submit</button>
+    <button class="reset-btn" onclick="resetPuzzle()">Reset</button>
 
     <script src="script.js"></script>
 </body>
