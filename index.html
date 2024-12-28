@@ -3,78 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Fiction Logic Puzzle</title>
+    <title>Interactive Fiction Logic Grid Puzzle</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
-        <h1>Interactive Fiction Logic Puzzle</h1>
+        <h1>Interactive Fiction Logic Grid Puzzle</h1>
 
-        <!-- Puzzle Grid -->
-        <table class="logic-grid">
-            <thead>
-                <tr>
-                    <th rowspan="2" colspan="2"></th>
-                    <th colspan="5">Twine Features</th>
-                </tr>
-                <tr>
-                    <th>Story Branching</th>
-                    <th>CSS Styling</th>
-                    <th>Variable Tracking</th>
-                    <th>Conditional Paths</th>
-                    <th>Timer Events</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th rowspan="5">Narrative Structures</th>
-                    <th>Branching Path</th>
-                    <td></td> <td></td> <td></td> <td></td> <td></td>
-                </tr>
-                <tr>
-                    <th>Hub-and-Spoke</th>
-                    <td></td> <td></td> <td></td> <td></td> <td></td>
-                </tr>
-                <tr>
-                    <th>Loop-and-Grow</th>
-                    <td></td> <td></td> <td></td> <td></td> <td></td>
-                </tr>
-                <tr>
-                    <th>Time-Delayed</th>
-                    <td></td> <td></td> <td></td> <td></td> <td></td>
-                </tr>
-                <tr>
-                    <th>Open Map</th>
-                    <td></td> <td></td> <td></td> <td></td> <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <p><strong>Clues:</strong></p>
+        <ul id="clue-list">
+            <!-- Clues will be dynamically inserted here -->
+        </ul>
 
-        <!-- Clue Section -->
-        <div class="clue-section">
-            <h2>Clues</h2>
-            <ol>
-                <li>Variable Tracking does not follow Branching Path or Open Map.</li>
-                <li>John Ayliff uses CSS for Hub-and-Spoke.</li>
-                <li>Detectiveland uses Conditional Paths but isn’t Loop-and-Grow or Open Map.</li>
-                <li>Their Angelical Understanding uses Story Branching and Loop-and-Grow.</li>
-                <li>Robin Johnson’s game doesn’t use Variable Tracking or Timer Events.</li>
-                <li>Open Map doesn't use Conditional Paths.</li>
-                <li>Della Watson uses Time-Delayed but not Story Branching.</li>
-                <li>Seedship uses CSS and Hub-and-Spoke.</li>
-                <li>Bogeyman by Phoebe Barton uses Timer Events.</li>
-                <li>Time-Delayed doesn’t use CSS.</li>
-            </ol>
+        <div class="grid-container">
+            <table class="logic-grid">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Detectiveland</th>
+                        <th>Seedship</th>
+                        <th>Their Angelical Understanding</th>
+                        <th>The Silence Under Your Bed</th>
+                        <th>Birdland</th>
+                    </tr>
+                </thead>
+                <tbody id="grid-body">
+                    <!-- Grid rows will be dynamically populated -->
+                </tbody>
+            </table>
         </div>
 
-        <!-- Score and Solution Check -->
-        <div class="score-container">
-            <button id="check-solution">Check Solution</button>
+        <button onclick="submitGrid()">Submit</button>
+        <button onclick="resetGrid()">Reset</button>
+        <div id="result"></div>
+
+        <div class="grid-container" id="solution-section" style="display:none;">
+            <h2>Correct Grid</h2>
+            <table class="logic-grid">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Detectiveland</th>
+                        <th>Seedship</th>
+                        <th>Their Angelical Understanding</th>
+                        <th>The Silence Under Your Bed</th>
+                        <th>Birdland</th>
+                    </tr>
+                </thead>
+                <tbody id="solution-grid-body">
+                    <!-- Solution grid dynamically populated -->
+                </tbody>
+            </table>
         </div>
     </div>
 
     <script src="script.js"></script>
-
 </body>
 </html>
