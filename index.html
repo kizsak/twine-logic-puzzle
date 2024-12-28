@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Fiction Logic Puzzle</title>
+    <title>Interactive Fiction Logic Grid Puzzle</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Interactive Fiction Narrative Structure Puzzle</h1>
+        <h1>Interactive Fiction Logic Puzzle</h1>
         
         <p><strong>Clues:</strong></p>
         <ul id="clue-list">
-            <!-- Clues will be dynamically inserted by JavaScript -->
+            <!-- Clues will be dynamically inserted here -->
         </ul>
 
-        <div class="grid">
-            <table id="logic-grid">
+        <div class="grid-wrapper">
+            <table class="logic-grid">
                 <thead>
                     <tr>
                         <th></th>
@@ -27,8 +27,40 @@
                         <th>Exploration-Based</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Grid rows will be populated by JavaScript -->
+                <tbody id="grid-body">
+                    <!-- Grid rows will be dynamically generated -->
+                </tbody>
+            </table>
+
+            <table class="logic-grid">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Detectiveland</th>
+                        <th>Seedship</th>
+                        <th>Their Angelical Understanding</th>
+                        <th>The Silence Under Your Bed</th>
+                        <th>Birdland</th>
+                    </tr>
+                </thead>
+                <tbody id="game-grid-body">
+                    <!-- Game grid rows will be generated here -->
+                </tbody>
+            </table>
+
+            <table class="logic-grid">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Conditional Paths</th>
+                        <th>CSS Styling</th>
+                        <th>Story Branching</th>
+                        <th>Variable Tracking</th>
+                        <th>Inventory Management</th>
+                    </tr>
+                </thead>
+                <tbody id="feature-grid-body">
+                    <!-- Feature grid rows will be generated here -->
                 </tbody>
             </table>
         </div>
@@ -40,74 +72,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-CSS (style.css)
-css
-Copy code
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-.container {
-    margin: 40px auto;
-    width: 90%;
-    max-width: 1200px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    margin-bottom: 20px;
-}
-
-.grid {
-    margin: 20px auto;
-    width: 100%;
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    text-align: center;
-    height: 50px;
-    width: 100px;
-    cursor: pointer;
-}
-
-th {
-    background-color: #f9f9f9;
-}
-
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-ul {
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto 30px;
-}
-
-ul li {
-    margin-bottom: 10px;
-    line-height: 1.5;
-}
