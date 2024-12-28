@@ -1,39 +1,29 @@
-/* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 20px;
-}
+// script.js
+function checkAnswers() {
+    const correctAnswers = {
+        work1: {
+            narrative: "Interactive Narrative",
+            feature: "Multimedia Integration",
+            author: "Porpentine"
+        },
+        // Add correct answers for other works
+    };
 
-form {
-    display: inline-block;
-    text-align: left;
-}
+    let score = 0;
+    let total = 0;
 
-.puzzle-item {
-    margin-bottom: 15px;
-}
+    for (let work in correctAnswers) {
+        total += 3; // Each work has 3 fields to match
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+        const userNarrative = document.getElementById(`narrative${work.slice(-1)}`).value;
+        const userFeature = document.getElementById(`feature${work.slice(-1)}`).value;
+        const userAuthor = document.getElementById(`author${work.slice(-1)}`).value;
 
-select {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 5px;
-}
+        if (userNarrative === correctAnswers[work].narrative) score++;
+        if (userFeature === correctAnswers[work].feature) score++;
+        if (userAuthor === correctAnswers[work].author) score++;
+    }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
+    const resultDiv = document.getElementById('result');
+    resultDiv.textContent = `You got ${score} out of ${total} correct.`;
 }
