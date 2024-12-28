@@ -1,71 +1,67 @@
-const rows = ['Narrative Depth', 'Replayability', 'Immersion', 'Accessibility', 'Efficiency'];
-const columns = ['Branching', 'CSS', 'HTML', 'Multiple Endings', 'Conditional Paths'];
+const goals = ['Narrative Depth', 'Replayability', 'Immersion', 'Accessibility', 'Efficiency'];
+const categories = ['Function', 'Challenge', 'Narrative Style'];
+const options = [
+    ['Branching', 'Multiple Endings', 'CSS Styling', 'Conditional Paths', 'HTML Passages'],
+    ['Time-based Events', 'Puzzle Design', 'Inventory System', 'Conditional Paths', 'Multiple Endings'],
+    ['Sci-Fi', 'Mystery', 'Fantasy', 'Historical', 'Horror']
+];
 
-// Grid Creation on Load
+// Grid Generation
 window.onload = function() {
-    const table = document.getElementById('grid-table');
-    let html = '<thead><tr><th></th>';
-    
-    columns.forEach(col => {
-        html += `<th>${col}</th>`;
-    });
-    html += '</tr></thead><tbody>';
-    
-    rows.forEach(row => {
-        html += `<tr><th>${row}</th>`;
-        columns.forEach(() => {
-            html += `<td class="cell" onclick="toggleCell(this)"></td>`;
+    const tableBody = document.querySelector('#logic-grid tbody');
+    categories.forEach(category => {
+        const row = document.createElement('tr');
+        const headerCell = document.createElement('th');
+        headerCell.innerText = category;
+        row.appendChild(headerCell);
+
+        goals.forEach(() => {
+            const cell = document.createElement('td');
+            cell.classList.add('cell');
+            cell.setAttribute('contenteditable', 'true'); // Editable cells
+            row.appendChild(cell);
         });
-        html += '</tr>';
+
+        tableBody.appendChild(row);
     });
-
-    html += '</tbody>';
-    table.innerHTML = html;
 };
 
-// Toggle Cell State (✓, X, blank)
-function toggleCell(cell) {
-    const current = cell.innerHTML;
-    if (current === '') {
-        cell.innerHTML = '✓';
-    } else if (current === '✓') {
-        cell.innerHTML = 'X';
-    } else {
-        cell.innerHTML = '';
-    }
-}
-
-// Solution Key (Correct Answers)
+// Solution for Grading
 const solution = {
-    'Narrative Depth': 'Branching',
-    'Replayability': 'Multiple Endings',
-    'Immersion': 'CSS',
-    'Accessibility': 'Conditional Paths',
-    'Efficiency': 'HTML'
+    'Narrative Depth': ['Branching', 'Time-based Events', 'Sci-Fi'],
+    'Replayability': ['Multiple Endings', 'Puzzle Design', 'Mystery'],
+    'Immersion': ['CSS Styling', 'Inventory System', 'Fantasy'],
+    'Accessibility': ['Conditional Paths', 'Conditional Paths', 'Historical'],
+    'Efficiency': ['HTML Passages', 'Multiple Endings', 'Horror']
 };
 
-// Grading the Grid
+// Grading Function
 function submitGrid() {
     const cells = document.querySelectorAll('.cell');
-    let correct = true;
+    let correctCount = 0;
+    const total = cells.length;
     let index = 0;
 
-    rows.forEach((row, i) => {
-        columns.forEach((col, j) => {
+    categories.forEach((category, rowIndex) => {
+        goals.forEach((goal, colIndex) => {
             const cell = cells[index];
-            const answer = solution[row];
-            
-            if (cell.innerHTML === '✓' && col !== answer) {
-                cell.style.backgroundColor = 'rgba(255, 0, 0, 0.2)';  // Incorrect
-                correct = false;
-            } else if (col === answer && cell.innerHTML === '✓') {
-                cell.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';  // Correct
+            const correctAnswer = solution[goal][rowIndex];
+
+            if (cell.innerText.trim() === correctAnswer) {
+                cell.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';  // Correct - Green
+                correctCount++;
+            } else {
+                cell.style.backgroundColor = 'rgba(255, 0, 0, 0.2)';  // Incorrect - Red
             }
             index++;
         });
     });
 
-    document.getElementById('result').innerText = correct 
-        ? "Congratulations! All answers are correct!" 
-        : "Some answers are incorrect. Try again!";
+    // Calculate percentage correct
+    const percentageCorrect = Math.round((correctCount / total) * 100);
+    document.getElementById('result').innerText = 
+        `You got ${correctCount}/${total} correct (${percentageCorrect}%).`;
+
+    // Disable submission after one attempt
+    document.querySelector('button').disabled = true;
 }
