@@ -64,4 +64,78 @@ function populateClues() {
     });
 }
 
-// Function
+// Function to generate the 15x15 grid
+function generateGrid() {
+    const gridBody = document.querySelector('#grid-body');
+    // Combine Twine Features, Example Games, and Authors for row labels
+    const rows = twineFeatures.concat(exampleGames, authors);
+    
+    rows.forEach(rowLabel => {
+        let row = `<tr><th>${rowLabel}</th>`;
+        narrativeStructures.concat(twineFeatures, exampleGames).forEach(() => {
+            row += `<td><input type="checkbox" class="grid-checkbox" data-row="${rowLabel}"></td>`;
+        });
+        row += '</tr>';
+        gridBody.innerHTML += row;
+    });
+}
+
+// Submit and Grade
+function submitGrid() {
+    const checkboxes = document.querySelectorAll('.grid-checkbox');
+    let correctCount = 0;
+
+    checkboxes.forEach(checkbox => {
+        const row = checkbox.dataset.row;
+        const colIndex = checkbox.closest('td').cellIndex - 1;
+        const selectedStructure = narrativeStructures.concat(twineFeatures, exampleGames)[colIndex];
+
+        if (checkbox.checked && solution[row] && solution[row][0] === selectedStructure) {
+            checkbox.closest('td').style.backgroundColor = 'rgba(46, 204, 113, 0.3)';
+            correctCount++;
+        } else if (checkbox.checked) {
+            checkbox.closest('td').style.backgroundColor = 'rgba(231, 76, 60, 0.3)';
+        }
+    });
+
+    const total = Object.keys(solution).length;
+    const percentageCorrect = Math.round((correctCount / total) * 100);
+    document.getElementById('result').innerText = `Score: ${correctCount}/${total} (${percentageCorrect}%)`;
+
+    displaySolution();
+}
+
+// Display Correct Grid
+function displaySolution() {
+    const solutionSection = document.getElementById('solution-section');
+    solutionSection.style.display = 'block';
+    const gridBody = document.querySelector('#solution-grid-body');
+    gridBody.innerHTML = '';
+
+    twineFeatures.concat(exampleGames, authors).forEach((rowLabel) => {
+        let row = `<tr><th>${rowLabel}</th>`;
+        narrativeStructures.concat(twineFeatures, exampleGames).forEach(() => {
+            const isCorrect = solution[row] && solution[row][0] === selectedStructure;
+            row += `<td>${isCorrect ? '✓' : ''}</td>`;
+        });
+        row += '</tr>';
+        gridBody.innerHTML += row;
+    });
+}
+
+// Reset Grid
+function resetGrid() {
+    const checkboxes = document.querySelectorAll('.grid-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.closest('td').style.backgroundColor = '';
+    });
+    document.getElementById('result').innerText = '';
+    document.getElementById('solution-section').style.display = 'none';
+}
+
+// Initialize
+window.onload = function() {
+    generateGrid();
+    populateClues();
+};
