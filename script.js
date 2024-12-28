@@ -1,4 +1,4 @@
-// Defining variables for the puzzle (5 options for each variable)
+// Defining the variables for the puzzle (5 options for each variable)
 const narrativeStructures = [
     'Branching Path', 
     'Hub-and-Spoke', 
@@ -31,7 +31,7 @@ const authors = [
     'Phoebe Barton'
 ];
 
-// Solution (for demonstration, based on the puzzle)
+// Correct Answers (for demonstration purposes)
 const solution = {
     'Detectiveland': ['Branching Path', 'Story Branching', 'Robin Johnson'],
     'The Silence Under Your Bed': ['Time-Delayed Progression', 'Variable Tracking', 'Della Watson'],
@@ -40,7 +40,7 @@ const solution = {
     'Bogeyman': ['Open Map', 'Timer-based Events', 'Phoebe Barton']
 };
 
-// Clues to guide the user
+// Clues for the puzzle
 const clues = [
     "The game using Variable Tracking does not follow a Branching Path or Open Map structure.",
     "John Ayliff’s game uses CSS Styling for a Hub-and-Spoke structure.",
@@ -54,7 +54,7 @@ const clues = [
     "The Time-Delayed Progression narrative does not use CSS Styling."
 ];
 
-// Function to populate clues
+// Populate Clues
 function populateClues() {
     const clueList = document.querySelector('#clue-list');
     clues.forEach(clue => {
@@ -64,10 +64,9 @@ function populateClues() {
     });
 }
 
-// Function to generate the 15x15 grid
+// Generate Grid (5x5 matrix)
 function generateGrid() {
     const gridBody = document.querySelector('#grid-body');
-    // Combine Twine Features, Example Games, and Authors for row labels
     const rows = twineFeatures.concat(exampleGames, authors);
     
     rows.forEach(rowLabel => {
@@ -134,7 +133,7 @@ function resetGrid() {
     document.getElementById('solution-section').style.display = 'none';
 }
 
-// Initialize
+// Initialize the page
 window.onload = function() {
     generateGrid();
     populateClues();
