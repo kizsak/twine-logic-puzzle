@@ -10,7 +10,8 @@
 
     <div class="container">
         <h1>Interactive Fiction Logic Puzzle</h1>
-        
+
+        <!-- Puzzle Grid -->
         <table class="logic-grid">
             <thead>
                 <tr>
@@ -33,4 +34,47 @@
                 </tr>
                 <tr>
                     <th>Hub-and-Spoke</th>
-    
+                    <td></td> <td></td> <td></td> <td></td> <td></td>
+                </tr>
+                <tr>
+                    <th>Loop-and-Grow</th>
+                    <td></td> <td></td> <td></td> <td></td> <td></td>
+                </tr>
+                <tr>
+                    <th>Time-Delayed</th>
+                    <td></td> <td></td> <td></td> <td></td> <td></td>
+                </tr>
+                <tr>
+                    <th>Open Map</th>
+                    <td></td> <td></td> <td></td> <td></td> <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Clue Section -->
+        <div class="clue-section">
+            <h2>Clues</h2>
+            <ol>
+                <li>Variable Tracking does not follow Branching Path or Open Map.</li>
+                <li>John Ayliff uses CSS for Hub-and-Spoke.</li>
+                <li>Detectiveland uses Conditional Paths but isn’t Loop-and-Grow or Open Map.</li>
+                <li>Their Angelical Understanding uses Story Branching and Loop-and-Grow.</li>
+                <li>Robin Johnson’s game doesn’t use Variable Tracking or Timer Events.</li>
+                <li>Open Map doesn't use Conditional Paths.</li>
+                <li>Della Watson uses Time-Delayed but not Story Branching.</li>
+                <li>Seedship uses CSS and Hub-and-Spoke.</li>
+                <li>Bogeyman by Phoebe Barton uses Timer Events.</li>
+                <li>Time-Delayed doesn’t use CSS.</li>
+            </ol>
+        </div>
+
+        <!-- Score and Solution Check -->
+        <div class="score-container">
+            <button id="check-solution">Check Solution</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
