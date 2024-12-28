@@ -1,44 +1,57 @@
+// Defining the variables (5 options for each variable)
 const narrativeStructures = [
     'Branching Path', 
     'Hub-and-Spoke', 
     'Loop-and-Grow', 
     'Time-Delayed Progression',
-    'Exploration-Based'
+    'Open Map'
 ];
 
-const games = [
+const twineFeatures = [
+    'Story Branching', 
+    'CSS Styling', 
+    'Variable Tracking', 
+    'Conditional Paths', 
+    'Timer-based Events'
+];
+
+const exampleGames = [
     'Detectiveland', 
-    'Seedship', 
-    'Their Angelical Understanding', 
     'The Silence Under Your Bed', 
-    'Birdland'
+    'Their Angelical Understanding', 
+    'Seedship', 
+    'Bogeyman'
 ];
 
 const authors = [
     'Robin Johnson', 
-    'John Ayliff', 
-    'Porpentine', 
     'Della Watson', 
-    'Brendan Patrick Hennessy'
+    'Porpentine', 
+    'John Ayliff', 
+    'Phoebe Barton'
 ];
 
-// Correct Answers
+// Correct Answers (for the example)
 const solution = {
-    'Detectiveland': 'Branching Path',
-    'Seedship': 'Hub-and-Spoke',
-    'Their Angelical Understanding': 'Loop-and-Grow',
-    'The Silence Under Your Bed': 'Time-Delayed Progression',
-    'Birdland': 'Exploration-Based'
+    'Detectiveland': ['Branching Path', 'Story Branching', 'Robin Johnson'],
+    'The Silence Under Your Bed': ['Time-Delayed Progression', 'Variable Tracking', 'Della Watson'],
+    'Their Angelical Understanding': ['Loop-and-Grow', 'Story Branching', 'Porpentine'],
+    'Seedship': ['Hub-and-Spoke', 'CSS Styling', 'John Ayliff'],
+    'Bogeyman': ['Open Map', 'Timer-based Events', 'Phoebe Barton']
 };
 
-// Clue list
+// Clues
 const clues = [
-    "Exploration-Based narrative uses Inventory Management and is authored by Brendan Patrick Hennessy.",
-    "Porpentine’s game does not use CSS Styling.",
-    "Hub-and-Spoke narratives always involve CSS Styling.",
-    "The Silence Under Your Bed uses Variable Tracking.",
-    "Detectiveland does not follow Hub-and-Spoke or Time-Delayed Progression.",
-    "John Ayliff’s game uses CSS Styling but not Branching Path."
+    "The game using Variable Tracking does not follow a Branching Path or Open Map structure.",
+    "John Ayliff’s game uses CSS Styling for a Hub-and-Spoke structure.",
+    "Detectiveland uses Conditional Paths but isn’t built with Loop-and-Grow or Open Map progression.",
+    "Their Angelical Understanding uses Story Branching for a Loop-and-Grow narrative.",
+    "Robin Johnson’s game doesn’t use Variable Tracking or Timer-based Events.",
+    "The Open Map narrative doesn’t use Conditional Paths.",
+    "Della Watson’s game features Time-Delayed Progression but avoids Story Branching.",
+    "Seedship follows a Hub-and-Spoke structure and uses CSS Styling.",
+    "Bogeyman is authored by Phoebe Barton and features Timer-based Events.",
+    "The Time-Delayed Progression narrative does not use CSS Styling."
 ];
 
 // Populate Clues
@@ -51,13 +64,15 @@ function populateClues() {
     });
 }
 
-// Generate Grid
+// Generate Grid (15x15 matrix)
 function generateGrid() {
     const gridBody = document.querySelector('#grid-body');
-    games.forEach(game => {
-        let row = `<tr><th>${game}</th>`;
-        narrativeStructures.forEach(() => {
-            row += `<td><input type="checkbox" class="grid-checkbox" data-game="${game}"></td>`;
+
+    // Generate Rows (Twine Features, Example Games, Authors)
+    twineFeatures.concat(exampleGames, authors).forEach((rowLabel) => {
+        let row = `<tr><th>${rowLabel}</th>`;
+        narrativeStructures.concat(twineFeatures, exampleGames).forEach(() => {
+            row += `<td><input type="checkbox" class="grid-checkbox" data-row="${rowLabel}"></td>`;
         });
         row += '</tr>';
         gridBody.innerHTML += row;
@@ -70,11 +85,11 @@ function submitGrid() {
     let correctCount = 0;
 
     checkboxes.forEach(checkbox => {
-        const game = checkbox.dataset.game;
-        const col = checkbox.closest('td').cellIndex - 1;
-        const selectedStructure = narrativeStructures[col];
+        const row = checkbox.dataset.row;
+        const colIndex = checkbox.closest('td').cellIndex - 1;
+        const selectedStructure = narrativeStructures.concat(twineFeatures, exampleGames)[colIndex];
 
-        if (checkbox.checked && solution[game] === selectedStructure) {
+        if (checkbox.checked && solution[row] && solution[row][0] === selectedStructure) {
             checkbox.closest('td').style.backgroundColor = 'rgba(46, 204, 113, 0.3)';
             correctCount++;
         } else if (checkbox.checked) {
@@ -96,10 +111,10 @@ function displaySolution() {
     const gridBody = document.querySelector('#solution-grid-body');
     gridBody.innerHTML = '';
 
-    games.forEach(game => {
-        let row = `<tr><th>${game}</th>`;
-        narrativeStructures.forEach(structure => {
-            const isCorrect = solution[game] === structure;
+    twineFeatures.concat(exampleGames, authors).forEach((rowLabel) => {
+        let row = `<tr><th>${rowLabel}</th>`;
+        narrativeStructures.concat(twineFeatures, exampleGames).forEach(() => {
+            const isCorrect = solution[row] && solution[row][0] === selectedStructure;
             row += `<td>${isCorrect ? '✓' : ''}</td>`;
         });
         row += '</tr>';
