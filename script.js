@@ -1,95 +1,88 @@
+// script.js
+
 document.addEventListener('DOMContentLoaded', () => {
-  const features = [
-    'Branching Narratives',
-    'Timed Text Display',
-    'Variable Tracking',
-    'Multimedia Integration',
-    'Inventory Management'
-  ];
+    const narrativeTypes = ['Branching Narrative', 'Linear Narrative', 'Non-linear Narrative', 'Cyclical Narrative'];
+    const twineFeatures = ['Variables', 'Conditional Logic', 'Passage Links', 'CSS Styling'];
+    const twineGames = ['Howling Dogs', 'Depression Quest', 'With Those We Love Alive', 'Queers in Love at the End of the World'];
+    const authors = ['Porpentine', 'Zoe Quinn', 'Porpentine', 'Anna Anthropy'];
 
-  const games = [
-    'Howling Dogs',
-    'Queers in Love at the End of the World',
-    'The Writer Will Do Something',
-    'C ya laterrrr',
-    'The Temple of No'
-  ];
+    const correctAnswers = [
+        { narrative: 'Branching Narrative', feature: 'Conditional Logic', game: 'Depression Quest', author: 'Zoe Quinn' },
+        { narrative: 'Linear Narrative', feature: 'Passage Links', game: 'Queers in Love at the End of the World', author: 'Anna Anthropy' },
+        { narrative: 'Non-linear Narrative', feature: 'Variables', game: 'Howling Dogs', author: 'Porpentine' },
+        { narrative: 'Cyclical Narrative', feature: 'CSS Styling', game: 'With Those We Love Alive', author: 'Porpentine' }
+    ];
 
-  const authors = [
-    'Porpentine Charity Heartscape',
-    'Anna Anthropy',
-    'Matthew S. Burns and Tom Bissell',
-    'Dan Hett',
-    'Crows Crows Crows'
-  ];
+    function createGrid() {
+        const container = document.getElementById('puzzle-container');
+        const grid = document.createElement('div');
+        grid.className = 'grid';
 
-  const correctAnswers = {
-    'Branching Narratives': {
-      game: 'Howling Dogs',
-      author: 'Porpentine Charity Heartscape'
-    },
-    'Timed Text Display': {
-      game: 'Queers in Love at the End of the World',
-      author: 'Anna Anthropy'
-    },
-    'Variable Tracking': {
-      game: 'The Writer Will Do Something',
-      author: 'Matthew S. Burns and Tom Bissell'
-    },
-    'Multimedia Integration': {
-      game: 'C ya laterrrr',
-      author: 'Dan Hett'
-    },
-    'Inventory Management': {
-      game: 'The Temple of No',
-      author: 'Crows Crows Crows'
+        // Create header row
+        const headers = ['', 'Twine Feature', 'Twine Game', 'Author'];
+        headers.forEach(header => {
+            const cell = document.createElement('div');
+            cell.className = 'cell header-cell';
+            cell.textContent = header;
+            grid.appendChild(cell);
+        });
+
+        // Create rows for each narrative type
+        narrativeTypes.forEach((narrative, rowIndex) => {
+            // Narrative type cell
+            const narrativeCell = document.createElement('div');
+            narrativeCell.className = 'cell header-cell';
+            narrativeCell.textContent = narrative;
+            grid.appendChild(narrativeCell);
+
+            // Dropdowns for each column
+            [twineFeatures, twineGames, authors].forEach((options, colIndex) => {
+                const selectCell = document.createElement('div');
+                selectCell.className = 'cell select-cell';
+                const select = document.createElement('select');
+                select.dataset.row = rowIndex;
+                select.dataset.col = colIndex;
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Select...';
+                select.appendChild(defaultOption);
+                options.forEach(option => {
+                    const opt = document.createElement('option');
+                    opt.value = option;
+                    opt.textContent = option;
+                    select.appendChild(opt);
+                });
+                selectCell.appendChild(select);
+                grid.appendChild(selectCell);
+            });
+        });
+
+        container.appendChild(grid);
     }
-  };
 
-  const tbody = document.querySelector('#logic-grid tbody');
+    function calculateScore() {
+        let correctCount = 0;
+        const total = narrativeTypes.length * 3; // 3 columns to match per row
 
-  features.forEach(feature => {
-    const row = document.createElement('tr');
+        document.querySelectorAll('select').forEach(select => {
+            const row = select.dataset.row;
+            const col = select.dataset.col;
+            const selectedValue = select.value;
+            const correctValue = Object.values(correctAnswers[row])[parseInt(col) + 1];
+            if (selectedValue === correctValue) {
+                correctCount++;
+            }
+        });
 
-    const featureCell = document.createElement('td');
-    featureCell.textContent = feature;
-    row.appendChild(featureCell);
+        const score = (correctCount / total) * 100;
+        return score.toFixed(2);
+    }
 
-    const gameCell = document.createElement('td');
-    const gameInput = document.createElement('input');
-    gameInput.type = 'text';
-    gameInput.dataset.feature = feature;
-    gameInput.dataset.type = 'game';
-    gameCell.appendChild(gameInput);
-    row.appendChild(gameCell);
-
-    const authorCell = document.createElement('td');
-    const authorInput = document.createElement('input');
-    authorInput.type = 'text';
-    authorInput.dataset.feature = feature;
-    authorInput.dataset.type = 'author';
-    authorCell.appendChild(authorInput);
-    row.appendChild(authorCell);
-
-    tbody.appendChild(row);
-  });
-
-  document.getElementById('submit-btn').addEventListener('click', () => {
-    let correctCount = 0;
-
-    features.forEach(feature => {
-      const gameInput = document.querySelector(`input[data-feature="${feature}"][data-type="game"]`).value.trim();
-      const authorInput = document.querySelector(`input[data-feature="${feature}"][data-type="author"]`).value.trim();
-
-      if (
-        gameInput.toLowerCase() === correctAnswers[feature].game.toLowerCase() &&
-        authorInput.toLowerCase() === correctAnswers[feature].author.toLowerCase()
-      ) {
-        correctCount++;
-      }
+    document.getElementById('submit-button').addEventListener('click', () => {
+        const score = calculateScore();
+        const resultDiv = document.getElementById('result');
+        resultDiv.textContent = `Your score: ${score}% correct choices.`;
     });
 
-    const percentageCorrect = (correctCount / features.length) * 100;
-    document.getElementById('result').textContent = `You got ${percentageCorrect}% correct.`;
-  });
+    createGrid();
 });
