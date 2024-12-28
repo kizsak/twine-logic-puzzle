@@ -2,44 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Fiction Logic Grid Puzzle</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Logic Grid Puzzle</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Interactive Fiction Development Puzzle</h1>
-        <p><strong>Clues:</strong></p>
-        <ul>
-            <li>Immersion prioritizes CSS Styling and is linked to Fantasy.</li>
-            <li>Replayability thrives on Multiple Endings in Mystery stories.</li>
-            <li>Accessibility aligns with Conditional Paths in Historical stories.</li>
-            <li>Efficiency focuses on HTML Passages and avoids Puzzle Design.</li>
-            <li>Narrative Depth benefits from Story Branching in Sci-Fi.</li>
-        </ul>
-
-        <div class="grid">
-            <table id="logic-grid">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Narrative Depth</th>
-                        <th>Replayability</th>
-                        <th>Immersion</th>
-                        <th>Accessibility</th>
-                        <th>Efficiency</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Grid will populate dynamically -->
-                </tbody>
-            </table>
+    <h1>Logic Grid Puzzle</h1>
+    <form id="puzzleForm">
+        <div class="puzzle-item">
+            <label for="work1">With Those We Love Alive</label>
+            <select id="narrative1">
+                <option value="">Select Narrative Style</option>
+                <option value="Linear Narrative">Linear Narrative</option>
+                <option value="Nonlinear Narrative">Nonlinear Narrative</option>
+                <option value="Interactive Narrative">Interactive Narrative</option>
+                <option value="Hypertext Fiction">Hypertext Fiction</option>
+                <option value="Branching Storyline">Branching Storyline</option>
+            </select>
+            <select id="feature1">
+                <option value="">Select Twine Feature</option>
+                <option value="Passage Linking">Passage Linking</option>
+                <option value="Variables and Conditional Logic">Variables and Conditional Logic</option>
+                <option value="Multimedia Integration">Multimedia Integration</option>
+                <option value="Story Formats">Story Formats</option>
+                <option value="CSS Styling">CSS Styling</option>
+            </select>
+            <select id="author1">
+                <option value="">Select Author/Creator</option>
+                <option value="Porpentine">Porpentine</option>
+                <option value="Matthew S. Burns">Matthew S. Burns</option>
+                <option value="Zoe Quinn">Zoe Quinn</option>
+                <option value="Anna Anthropy">Anna Anthropy</option>
+                <option value="William Pugh">William Pugh</option>
+            </select>
         </div>
-
-        <button onclick="submitGrid()">Submit</button>
-        <div id="result"></div>
-    </div>
-
+        <!-- Repeat similar blocks for other works -->
+        <button type="button" onclick="checkAnswers()">Submit Answers</button>
+    </form>
+    <div id="result"></div>
     <script src="script.js"></script>
 </body>
 </html>
