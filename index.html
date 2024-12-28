@@ -3,25 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Fiction Logic Grid Puzzle</title>
+    <title>Interactive Fiction Logic Puzzle</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Interactive Fiction Logic Grid Puzzle</h1>
+        <h1>Interactive Fiction Narrative Structure Puzzle</h1>
         
         <p><strong>Clues:</strong></p>
-        <ul>
-            <li>The game using Variable Tracking does not follow a Branching Path or Open Map structure.</li>
-            <li>John Ayliff’s game uses CSS Styling for a Hub-and-Spoke structure.</li>
-            <li><em>Detectiveland</em> uses Conditional Paths but isn’t built with Loop-and-Grow or Open Map progression.</li>
-            <li><em>Their Angelical Understanding</em> uses Story Branching for a Loop-and-Grow narrative.</li>
-            <li>Robin Johnson’s game doesn’t use Variable Tracking or Timer-based Events.</li>
-            <li>The Open Map narrative doesn’t use Conditional Paths.</li>
-            <li>Della Watson’s game features Time-Delayed Progression but avoids Story Branching.</li>
-            <li><em>Seedship</em> follows Hub-and-Spoke and uses CSS Styling.</li>
-            <li><em>Bogeyman</em> is authored by Phoebe Barton and features Timer-based Events.</li>
-            <li>The Time-Delayed narrative does not use CSS Styling.</li>
+        <ul id="clue-list">
+            <!-- Clues will be dynamically inserted by JavaScript -->
         </ul>
 
         <div class="grid">
@@ -33,11 +24,11 @@
                         <th>Hub-and-Spoke</th>
                         <th>Loop-and-Grow</th>
                         <th>Time-Delayed Progression</th>
-                        <th>Open Map</th>
+                        <th>Exploration-Based</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- JavaScript will dynamically create grid rows -->
+                    <!-- Grid rows will be populated by JavaScript -->
                 </tbody>
             </table>
         </div>
@@ -49,3 +40,74 @@
     <script src="script.js"></script>
 </body>
 </html>
+CSS (style.css)
+css
+Copy code
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.grid {
+    margin: 20px auto;
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    text-align: center;
+    height: 50px;
+    width: 100px;
+    cursor: pointer;
+}
+
+th {
+    background-color: #f9f9f9;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+ul {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
