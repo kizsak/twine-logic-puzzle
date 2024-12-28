@@ -35,4 +35,4 @@ function resetPuzzle() {
         checkbox.checked = false;
         checkbox.parentElement.classList.remove('correct', 'incorrect');
     });
-} 
+}
