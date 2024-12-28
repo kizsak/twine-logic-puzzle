@@ -1,37 +1,50 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
-#puzzle-container {
-    display: inline-block;
-    margin-top: 20px;
+.container {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(5, 150px);
-    gap: 5px;
+h1 {
     margin-bottom: 20px;
 }
 
-.cell {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-}
-
-.header-cell {
-    font-weight: bold;
-    background-color: #f0f0f0;
-}
-
-.select-cell select {
+.grid {
+    margin: 20px auto;
     width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    text-align: center;
+    height: 50px;
+    width: 80px;
+    cursor: pointer;
+}
+
+th {
+    background-color: #f9f9f9;
 }
 
 button {
+    margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
