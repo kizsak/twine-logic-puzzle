@@ -8,14 +8,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Interactive Fiction Logic Puzzle</h1>
+        <h1>Interactive Fiction Logic Grid Puzzle</h1>
         
         <p><strong>Clues:</strong></p>
         <ul id="clue-list">
-            <!-- Clues will be dynamically inserted here -->
+            <!-- Clues dynamically inserted here -->
         </ul>
 
-        <div class="grid-wrapper">
+        <div class="grid-container">
             <table class="logic-grid">
                 <thead>
                     <tr>
@@ -28,45 +28,33 @@
                     </tr>
                 </thead>
                 <tbody id="grid-body">
-                    <!-- Grid rows will be dynamically generated -->
-                </tbody>
-            </table>
-
-            <table class="logic-grid">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Detectiveland</th>
-                        <th>Seedship</th>
-                        <th>Their Angelical Understanding</th>
-                        <th>The Silence Under Your Bed</th>
-                        <th>Birdland</th>
-                    </tr>
-                </thead>
-                <tbody id="game-grid-body">
-                    <!-- Game grid rows will be generated here -->
-                </tbody>
-            </table>
-
-            <table class="logic-grid">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Conditional Paths</th>
-                        <th>CSS Styling</th>
-                        <th>Story Branching</th>
-                        <th>Variable Tracking</th>
-                        <th>Inventory Management</th>
-                    </tr>
-                </thead>
-                <tbody id="feature-grid-body">
-                    <!-- Feature grid rows will be generated here -->
+                    <!-- Grid rows will be dynamically populated -->
                 </tbody>
             </table>
         </div>
 
         <button onclick="submitGrid()">Submit</button>
+        <button onclick="resetGrid()">Reset</button>
         <div id="result"></div>
+
+        <div class="grid-container" id="solution-section" style="display:none;">
+            <h2>Correct Grid</h2>
+            <table class="logic-grid">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Branching Path</th>
+                        <th>Hub-and-Spoke</th>
+                        <th>Loop-and-Grow</th>
+                        <th>Time-Delayed Progression</th>
+                        <th>Exploration-Based</th>
+                    </tr>
+                </thead>
+                <tbody id="solution-grid-body">
+                    <!-- Solution grid dynamically populated -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src="script.js"></script>
