@@ -35,7 +35,7 @@ th, td {
     border: 1px solid #ddd;
     text-align: center;
     height: 50px;
-    width: 80px;
+    width: 100px;
     cursor: pointer;
 }
 
@@ -54,4 +54,15 @@ button {
     margin-top: 20px;
     font-size: 18px;
     font-weight: bold;
+}
+
+ul {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    line-height: 1.5;
 }
