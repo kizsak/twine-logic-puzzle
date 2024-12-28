@@ -1,39 +1,24 @@
-const narrativeStructures = [
-    'Branching Path', 
-    'Hub-and-Spoke', 
-    'Loop-and-Grow', 
-    'Time-Delayed Progression',
-    'Exploration-Based'
-];
+const narrativeStructures = ['Branching Path', 'Hub-and-Spoke', 'Loop-and-Grow', 'Time-Delayed Progression', 'Exploration-Based'];
+const games = ['Detectiveland', 'Seedship', 'Their Angelical Understanding', 'The Silence Under Your Bed', 'Birdland'];
+const authors = ['Robin Johnson', 'John Ayliff', 'Porpentine', 'Della Watson', 'Brendan Patrick Hennessy'];
 
-const games = [
-    'Detectiveland', 
-    'Seedship', 
-    'Their Angelical Understanding', 
-    'The Silence Under Your Bed', 
-    'Birdland'
-];
+// Correct Answers
+const solution = {
+    'Detectiveland': 'Branching Path',
+    'Seedship': 'Hub-and-Spoke',
+    'Their Angelical Understanding': 'Loop-and-Grow',
+    'The Silence Under Your Bed': 'Time-Delayed Progression',
+    'Birdland': 'Exploration-Based'
+};
 
-const features = [
-    'Conditional Paths', 
-    'CSS Styling', 
-    'Story Branching', 
-    'Variable Tracking', 
-    'Inventory Management'
-];
-
-// Advanced Clues
+// Clues
 const clues = [
-    "Inventory Management does not follow Branching Path and is authored by Brendan Patrick Hennessy.",
-    "Loop-and-Grow does not use Conditional Paths or Variable Tracking.",
-    "Birdland’s author comes before the author of Seedship.",
-    "CSS Styling aligns directly next to Story Branching but not for Branching Path.",
-    "Detectiveland and Seedship belong to different structures.",
-    "Robin Johnson's game uses Conditional Paths.",
-    "Time-Delayed Progression pairs with Variable Tracking.",
-    "Porpentine authored Their Angelical Understanding.",
-    "Exploration-Based features Inventory Management.",
-    "CSS Styling is linked to John Ayliff's work."
+    "Exploration-Based narrative uses Inventory Management and is authored by Brendan Patrick Hennessy.",
+    "Porpentine’s game does not use CSS Styling.",
+    "Hub-and-Spoke narratives always involve CSS Styling.",
+    "The Silence Under Your Bed uses Variable Tracking.",
+    "Detectiveland does not follow Hub-and-Spoke or Time-Delayed Progression.",
+    "John Ayliff’s game uses CSS Styling but not Branching Path."
 ];
 
 // Populate Clues
@@ -46,64 +31,75 @@ function populateClues() {
     });
 }
 
-// Generate Grid Sections
-function generateGrid(gridId, options) {
-    const grid = document.getElementById(gridId);
-    let html = '';
-
-    options.forEach(option => {
-        html += `<tr><th>${option}</th>`;
+// Generate Grid
+function generateGrid() {
+    const gridBody = document.querySelector('#grid-body');
+    games.forEach(game => {
+        let row = `<tr><th>${game}</th>`;
         narrativeStructures.forEach(() => {
-            html += `<td class="cell"></td>`;
+            row += `<td><input type="checkbox" class="grid-checkbox" data-game="${game}"></td>`;
         });
-        html += '</tr>';
-    });
-
-    grid.innerHTML = html;
-    attachCellListeners();
-}
-
-// Attach Cell Click Event
-function attachCellListeners() {
-    const cells = document.querySelectorAll('.cell');
-    cells.forEach(cell => {
-        cell.addEventListener('click', function () {
-            if (cell.innerHTML === '') {
-                cell.innerHTML = '✓';
-            } else if (cell.innerHTML === '✓') {
-                cell.innerHTML = '✗';
-            } else {
-                cell.innerHTML = '';
-            }
-        });
+        row += '</tr>';
+        gridBody.innerHTML += row;
     });
 }
 
-// Initialize Grids and Clues on Load
-window.onload = function() {
-    generateGrid('grid-body', games);
-    generateGrid('game-grid-body', features);
-    generateGrid('feature-grid-body', features);
-    populateClues();
-};
-
-// Grade Puzzle
+// Submit and Grade
 function submitGrid() {
-    const cells = document.querySelectorAll('.cell');
+    const checkboxes = document.querySelectorAll('.grid-checkbox');
     let correctCount = 0;
-    const total = cells.length;
 
-    // Simple grading for demo (adjust logic as needed)
-    cells.forEach(cell => {
-        if (cell.innerHTML === '✓') {
+    checkboxes.forEach(checkbox => {
+        const game = checkbox.dataset.game;
+        const col = checkbox.closest('td').cellIndex - 1;
+        const selectedStructure = narrativeStructures[col];
+
+        if (checkbox.checked && solution[game] === selectedStructure) {
+            checkbox.closest('td').style.backgroundColor = 'rgba(0, 255, 0, 0.3)';
             correctCount++;
-            cell.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
-        } else if (cell.innerHTML === '✗') {
-            cell.style.backgroundColor = 'rgba(255, 0, 0, 0.2)';
+        } else if (checkbox.checked) {
+            checkbox.closest('td').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
         }
     });
 
+    const total = Object.keys(solution).length;
     const percentageCorrect = Math.round((correctCount / total) * 100);
-    document.getElementById('result').innerText = 
-        `You got ${correctCount}/${total} correct (${percentageCorrect}%).`;
+    document.getElementById('result').innerText = `Score: ${correctCount}/${total} (${percentageCorrect}%)`;
+
+    displaySolution();
 }
+
+// Display Correct Grid
+function displaySolution() {
+    const solutionSection = document.getElementById('solution-section');
+    solutionSection.style.display = 'block';
+    const gridBody = document.querySelector('#solution-grid-body');
+    gridBody.innerHTML = '';
+
+    games.forEach(game => {
+        let row = `<tr><th>${game}</th>`;
+        narrativeStructures.forEach(structure => {
+            const isCorrect = solution[game] === structure;
+            row += `<td>${isCorrect ? '✓' : ''}</td>`;
+        });
+        row += '</tr>';
+        gridBody.innerHTML += row;
+    });
+}
+
+// Reset Grid
+function resetGrid() {
+    const checkboxes = document.querySelectorAll('.grid-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.closest('td').style.backgroundColor = '';
+    });
+    document.getElementById('result').innerText = '';
+    document.getElementById('solution-section').style.display = 'none';
+}
+
+// Initialize
+window.onload = function() {
+    generateGrid();
+    populateClues();
+};
