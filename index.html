@@ -1,84 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Twine Logic Grid Puzzle</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Logic Grid Puzzle</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Twine Logic Grid Puzzle</h1>
-  <p>Match each Twine feature to the corresponding game and author.</p>
-  <table id="logic-grid">
-    <thead>
-      <tr>
-        <th>Feature</th>
-        <th>Game</th>
-        <th>Author</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Rows will be populated by JavaScript -->
-    </tbody>
-  </table>
-  <button id="submit-btn">Submit</button>
-  <div id="result"></div>
-  <script src="script.js"></script>
+    <h1>Interactive Fiction Logic Grid Puzzle</h1>
+    <div id="puzzle-container">
+        <!-- Puzzle grid will be generated here -->
+    </div>
+    <button id="submit-button">Submit Answers</button>
+    <div id="result"></div>
+    <script src="script.js"></script>
 </body>
 </html>
-4. Style the Interface (styles.css):
-
-Apply CSS to enhance the visual appeal of the puzzle interface.
-
-css
-Copy code
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  text-align: center;
-}
-
-h1 {
-  margin-bottom: 10px;
-}
-
-p {
-  margin-bottom: 20px;
-}
-
-table {
-  margin: 0 auto;
-  border-collapse: collapse;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-input[type="text"] {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 5px;
-}
-
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-#result {
-  margin-top: 20px;
-  font-size: 18px;
-}
