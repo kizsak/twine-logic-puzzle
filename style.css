@@ -1,38 +1,52 @@
-const correctAnswers = [
-    [true, false, false, false, false],  // Branching Narratives
-    [false, false, false, false, true],  // Variable Tracking
-    [false, false, true, false, false]   // Looping Passages
-];
-
-function checkResults() {
-    const rows = document.querySelectorAll('#logicMatrix tbody tr');
-    let total = 0;
-    let correctCount = 0;
-
-    rows.forEach((row, rowIndex) => {
-        const checkboxes = row.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach((checkbox, colIndex) => {
-            total++;
-            const isCorrect = checkbox.checked === correctAnswers[rowIndex][colIndex];
-            if (isCorrect) {
-                correctCount++;
-                checkbox.parentElement.classList.add('correct');
-                checkbox.parentElement.classList.remove('incorrect');
-            } else {
-                checkbox.parentElement.classList.add('incorrect');
-                checkbox.parentElement.classList.remove('correct');
-            }
-        });
-    });
-
-    const score = ((correctCount / total) * 100).toFixed(2);
-    alert(`Your score: ${score}%`);
+.red-label {
+    color: red;
 }
 
-function resetPuzzle() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-        checkbox.parentElement.classList.remove('correct', 'incorrect');
-    });
-} 
+.yellow-label {
+    color: yellow;
+}
+
+.green-label {
+    color: green;
+}
+
+.blue-label {
+    color: blue;
+}
+
+/* Additional styling for table and inputs */
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    width: 150px;
+    height: 30px;
+    border: 1px solid #000;
+    text-align: center;
+    vertical-align: middle;
+}
+
+input {
+    width: 90%;
+    height: 80%;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.correct {
+    background-color: #c8e6c9;
+}
+
+.incorrect {
+    background-color: #ffcdd2;
+}
