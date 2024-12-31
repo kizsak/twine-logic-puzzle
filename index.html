@@ -2,54 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Logic Matrix Puzzle</title>
-    <link rel="stylesheet" href="style.css">
+    <title>LogicGrid Puzzle</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Interactive Fiction Logic Matrix</h1>
-    <table id="logicMatrix">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Branching Path</th>
-                <th>Hub-and-Spoke</th>
-                <th>Loop-and-Grow</th>
-                <th>Time-Delayed Progression</th>
-                <th>Open Map</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Branching Narratives</td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-            </tr>
-            <tr>
-                <td>Variable Tracking</td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-            </tr>
-            <tr>
-                <td>Looping Passages</td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <button class="submit-btn" onclick="checkResults()">Submit</button>
-    <button class="reset-btn" onclick="resetPuzzle()">Reset</button>
-
+    <h1>LogicGrid Puzzle</h1>
+    <div id="puzzle-container">
+        <table id="puzzle-grid">
+            <!-- JavaScript will populate the table rows and cells -->
+        </table>
+    </div>
+    <button id="check-answers">Check Answers</button>
+    <div id="result"></div>
     <script src="script.js"></script>
 </body>
 </html>
