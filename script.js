@@ -1,44 +1,73 @@
-const correctAnswers = [
-    // Row order: Twine Features, Example Games, Game Authors
-    // Column order: Narrative Structures, Twine Features, Example Games
-    [true, false, false, false, false],  // Branching Narratives
-    [false, false, false, false, true],  // Variable Tracking
-    [false, false, true, false, false],  // Looping Passages
-    [false, true, false, false, false],  // Example Game 1
-    [false, false, false, true, false],  // Example Game 2
-    [true, false, false, false, false],  // Author 1
-    [false, false, false, true, false]   // Author 2
+const grid = Array.from({ length: 15 }, () => Array(15).fill(false));
+const answerKey = Array.from({ length: 15 }, () => Array(15).fill(false));
+
+const labelsX = [
+    "Cascade", "Hub-and-Spoke", "Loop-and-Grow", "Triggered Possession", "Open Map",
+    "Branching Narratives", "Variable Tracking", "Looping Passages", "Timed Text Display",
+    "Inventory Management", "Swan Hill", "The Great Mortality",
+    "You Can't Wait to Get to the Pharmacy", "You Contain Multitudes", "A Day in the Life of a Noble Lady"
 ];
 
-function checkResults() {
-    const rows = document.querySelectorAll('#logicMatrix tbody tr');
-    let total = 0;
-    let correctCount = 0;
+const labelsY = [...labelsX];
 
-    rows.forEach((row, rowIndex) => {
-        const checkboxes = row.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach((checkbox, colIndex) => {
-            total++;
-            const isCorrect = checkbox.checked === correctAnswers[rowIndex][colIndex];
-            if (isCorrect) {
-                correctCount++;
-                checkbox.parentElement.classList.add('correct');
-                checkbox.parentElement.classList.remove('incorrect');
-            } else {
-                checkbox.parentElement.classList.add('incorrect');
-                checkbox.parentElement.classList.remove('correct');
-            }
-        });
-    });
+// Answer Key Setup
+answerKey[0][5] = true;  
+answerKey[0][10] = true; 
+answerKey[0][14] = true; 
+answerKey[1][9] = true;  
+answerKey[1][14] = true; 
+answerKey[1][4] = true;  
+answerKey[2][7] = true;  
+answerKey[2][13] = true; 
+answerKey[2][3] = true;  
 
-    const score = ((correctCount / total) * 100).toFixed(2);
-    alert(`Your score: ${score}%`);
+// Generate Table
+const table = document.getElementById('logic-grid');
+
+const headerRow = table.rows[0];
+labelsX.forEach(label => {
+    const th = document.createElement('th');
+    th.textContent = label;
+    headerRow.appendChild(th);
+});
+
+for (let i = 0; i < 15; i++) {
+    const row = table.insertRow();
+    const rowHeader = document.createElement('th');
+    rowHeader.textContent = labelsY[i];
+    row.appendChild(rowHeader);
+
+    for (let j = 0; j < 15; j++) {
+        const cell = row.insertCell();
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.onchange = () => setGrid(i, j, checkbox.checked);
+        cell.appendChild(checkbox);
+    }
 }
 
-function resetPuzzle() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-        checkbox.parentElement.classList.remove('correct', 'incorrect');
-    });
+// Update Grid on Checkbox Change
+function setGrid(row, col, value) {
+    grid[row][col] = value;
+}
+
+// Check Answers and Unlock Next Passage
+function checkAnswers() {
+    let correct = 0;
+    let totalCorrect = answerKey.flat().filter(Boolean).length;
+
+    for (let i = 0; i < 15; i++) {
+        for (let j = 0; j < 15; j++) {
+            if (grid[i][j] === answerKey[i][j]) {
+                correct++;
+            }
+        }
+    }
+
+    if (correct === totalCorrect) {
+        alert('Perfect score! You may continue.');
+        document.getElementById('nextLink').style.display = 'block';
+    } else {
+        alert(`You got ${correct} out of ${totalCorrect} correct. Try again!`);
+    }
 }
